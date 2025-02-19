@@ -1,0 +1,23 @@
+﻿<Window x:Class="LeageAccManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeageAccManager"
+        mc:Ignorable="d"
+        Title="League Auto Login" Height="350" Width="400">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <TextBlock Text="Username" Margin="0,10,0,0"/>
+            <TextBox x:Name="UsernameTextBox" Margin="0,5,0,10"/>
+            <TextBlock Text="Password:"/>
+            <PasswordBox x:Name="PasswordBox" Margin="0,5,0,10"/>
+            <Button x:Name="SaveButton" Content="Save Account" Click="SaveButton_Click" Margin="0,10,0,10"/>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <ComboBox x:Name="AccountsComboBox" Width="270" Margin="0,10,0,10" DisplayMemberPath="Username"/>
+                <Button x:Name="DeleteButton" Content="X" Height="22" Width="20" Click="DeleteButton_Click" Margin="10,0,0,0"/>
+            </StackPanel>
+            <Button x:Name="LoginButton" Content="Login To League" Click="LoginButton_Click" Margin="0,10,0,10"/>
+        </StackPanel>
+    </Grid>
+</Window>
