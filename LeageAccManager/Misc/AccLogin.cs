@@ -66,7 +66,7 @@ namespace LeageAccManager
                 
                 Logger.Log("Switching to password field...", LogType.Warning);
                 sim.Keyboard.KeyPress(VirtualKeyCode.TAB);
-                await Task.Delay(500); 
+                await Task.Delay(500);
                 
                 Logger.Log("Entering password...", LogType.Warning);
                 foreach (char c in account.Password)

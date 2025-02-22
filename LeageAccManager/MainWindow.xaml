@@ -5,19 +5,150 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeageAccManager"
         mc:Ignorable="d"
-        Title="League Auto Login" Height="350" Width="400">
-    <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
-            <TextBlock Text="Username" Margin="0,10,0,0"/>
-            <TextBox x:Name="UsernameTextBox" Margin="0,5,0,10"/>
-            <TextBlock Text="Password:"/>
-            <PasswordBox x:Name="PasswordBox" Margin="0,5,0,10"/>
-            <Button x:Name="SaveButton" Content="Save Account" Click="SaveButton_Click" Margin="0,10,0,10"/>
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                <ComboBox x:Name="AccountsComboBox" Width="270" Margin="0,10,0,10" DisplayMemberPath="Username"/>
-                <Button x:Name="DeleteButton" Content="X" Height="22" Width="20" Click="DeleteButton_Click" Margin="10,0,0,0"/>
+        Title="League Auto Login" Height="467" Width="640">
+    <Window.Resources>
+        <!-- Rounded button -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10" 
+                                BorderThickness="1" 
+                                BorderBrush="Transparent">
+                            <Viewbox Stretch="Uniform">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#357ABD"/> <!-- Ciemniejszy kolor po najechaniu -->
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#2A6496"/> <!-- Jeszcze ciemniejszy przy kliknięciu -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Rounded button for del button  -->
+        <Style x:Key="DelRoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10" 
+                                BorderThickness="1" 
+                                BorderBrush="Transparent">
+                            <Viewbox Stretch="Uniform">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#ff2b2b"/> <!-- Ciemniejszy kolor po najechaniu -->
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#b30707"/> <!-- Jeszcze ciemniejszy przy kliknięciu -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    
+     
+    <Grid Background="#212429">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="LeagueAccLogin"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   Margin="0,55,0,0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Grid.Row="0"
+                   Foreground="White"/>
+        
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <!-- Username --> 
+            <TextBlock Text="Username:" 
+                       FontSize="18" 
+                       Margin="0,0,0,15" 
+                       Foreground="White"/>
+            
+            <TextBox x:Name="UsernameTextBox" 
+                     FontSize="12"
+                     Margin="0,5,0,20"/>
+            
+            <!-- Password -->
+            <TextBlock Text="Password:"
+                       FontSize="18"
+                       Foreground="White" 
+                       Margin="0,0,0,15"/>
+            
+            <PasswordBox x:Name="PasswordBox"
+                         FontSize="12"
+                         Margin="0,5,0,20"/>
+            
+            <!-- Cbox with del button -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <ComboBox x:Name="AccountsComboBox"
+                          Width="210"
+                          Margin="0,10,0,10"
+                          DisplayMemberPath="Username"/>
+                
+                <Button x:Name="DeleteButton"
+                        Content="Delete Acc" 
+                        Height="22" 
+                        Width="80" 
+                        Click="DeleteButton_Click"
+                        Style="{StaticResource DelRoundedButtonStyle}"
+                        Margin="10,0,0,0"/>
             </StackPanel>
-            <Button x:Name="LoginButton" Content="Login To League" Click="LoginButton_Click" Margin="0,10,0,10"/>
+            
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="SaveButton"
+                        Content="Save Account" 
+                        Click="SaveButton_Click"
+                        Margin="0,10,0,10"
+                        Style="{StaticResource RoundedButtonStyle}"
+                        Height="25"/>
+                
+                <Button x:Name="LoginButton"
+                        Content="Login To League"
+                        Click="LoginButton_Click" 
+                        Margin="0,10,0,10"
+                        Style="{StaticResource RoundedButtonStyle}"
+                        Height="25"/>
+            </StackPanel>
+            
+            <Button x:Name="CheckAccount"
+                    Content="Check Op.gg"
+                    Click="CheckAccount_Click"
+                    Margin="0,10,0,10"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Height="25"/>
         </StackPanel>
     </Grid>
 </Window>

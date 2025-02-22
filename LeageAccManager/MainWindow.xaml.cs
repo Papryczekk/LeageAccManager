@@ -94,5 +94,10 @@ namespace LeageAccManager
             AccountsComboBox.ItemsSource = null;
             AccountsComboBox.ItemsSource = _accounts;
         }
+
+        private void CheckAccount_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }    
